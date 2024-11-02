@@ -40,13 +40,13 @@ function Blogs(){
     </Center>
     <FutureBlogs/> */}
     <Center>
-    <Title td="underline" order={2} my="xl">Zenn</Title>
-    </Center>
-    <ZennBlogs/>
-    <Center>
     <Title td="underline" order={2} my="xl">Qiita</Title>
     </Center>
     <QiitaBlogs/>
+    <Center>
+    <Title td="underline" order={2} my="xl">Zenn</Title>
+    </Center>
+    <ZennBlogs/>
     </>
   )
 }
@@ -248,7 +248,7 @@ function Sentence(){
 }
 
 const elements = [
-	{ title: "【Spectroscopic estimation of the photon number for superconducting Kerr parametric oscillators", year: 2023,link:"https://iopscience.iop.org/article/10.35848/1347-4065/acc3a8/meta"},
+	{ title: "Spectroscopic estimation of the photon number for superconducting Kerr parametric oscillators", year: 2023,link:"https://iopscience.iop.org/article/10.35848/1347-4065/acc3a8/meta"},
 	{ title: "Calculation of Gibbs partition function with imaginary time evolution on near-term quantum computers", year: 2022, link: "https://iopscience.iop.org/article/10.35848/1347-4065/ac5152/meta"},
 ];
 

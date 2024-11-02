@@ -23,7 +23,7 @@
 .header {
   height: rem(56px);
   margin-bottom: rem(120px);
-  background-color: var(--mantine-color-body);
+  background-color: var(--mantine-color-blue-2);
   border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
@@ -60,6 +60,7 @@
   align-items: center;
   padding-top: var(--mantine-spacing-xl);
   padding-bottom: var(--mantine-spacing-xl);
+  
 
   @media (max-width: $mantine-breakpoint-xs) {
     flex-direction: column;

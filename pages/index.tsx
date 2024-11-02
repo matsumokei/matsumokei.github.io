@@ -239,9 +239,9 @@ function Sentence(){
 	return(
 		<Center>
 		<Box my="xl" mx="xl" w="800">
-      <Text>I am a software developer and an researcher. </Text>
-			<Text>I have a keen interest in the societal implementation of quantum computing and am actively working on designing architectures that integrate it with cloud solutions.</Text>
-			<Text>My preferred programming language is Go.</Text>
+      <Text>I am a R&D engineer.</Text>
+			<Text>I am interested in Software Supply Chain Security, DevSecOps and Open Source Software. </Text>
+			<Text>My primary programming languages are Golang and Python.</Text>
 		</Box>
 		</Center>
 	)
@@ -308,11 +308,11 @@ function Publication(){
     }
 
     const pres_jap_elements = [
-      { title: "SLSAワークショップ TA", conference: "SLSAワークショップ By OpenSSF", year: 2024, link:"https://www.linuxfoundation.jp/events/2024/10/join-us-at-the-slsa-workshop-on-november-1/"},
+      { title: "SLSAワークショップ アシスタント", conference: "SLSAワークショップ By OpenSSF@国際文化会館", year: 2024, link:"https://www.linuxfoundation.jp/events/2024/10/join-us-at-the-slsa-workshop-on-november-1/"},
       { title: "OSSの依存関係に注目した脆弱性評価・対策への適用提案", conference: "ネットワーク科学研究会@同志社大学（今出川キャンパス）", year: 2023, link: "https://www.network-science-seminar.com/activities/2023/poster"},
       { title: "NISQ デバイスを用いた分配関数の計算",conference: "第 4 回量子ソフトウェア研究会@オンライン", year: 2021},
-      { title: "NISQ デバイスを用いた分配関数の計算 II@オンライン", conference: "日本物理学会 2021 年秋季大会", year: 2021,},
-      { title: "NISQ デバイスを用いた分配関数の計算@オンライン", conference: "『日本物理学会 第 76 回年次大会 (2021 年)", year: 2021,},
+      { title: "NISQ デバイスを用いた分配関数の計算 II@オンライン", conference: "日本物理学会 2021 年秋季大会@オンライン", year: 2021,},
+      { title: "NISQ デバイスを用いた分配関数の計算@オンライン", conference: "日本物理学会 第 76 回年次大会 (2021 年)@オンライン", year: 2021,},
     ];
     
     function Talks_Japanese(){
@@ -434,8 +434,8 @@ export function HeaderSimple({ setShowPersonalInfo }: HeaderSimpleProps) {
       key={link.label}
       className={classes.link}
 			style={{
-				backgroundColor: active === link.link ? "#1D72FE" : "white",
-				color: active === link.link ? "white" : "#1D72FE"
+				backgroundColor: active === link.link ? "#42affc" : "white",
+				color: active === link.link ? "white" : "#42affc"
 			}}
       onClick={() => {
         if (link.label === "About") {

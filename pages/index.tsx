@@ -83,8 +83,10 @@ const OgpCard: React.FC<OgpCardProps> = ({ title, image, url }) => {
   );
 };
 
-const ZENN_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://zenn.dev/matsumo162/feed";
 const QIITA_URL="https://api.rss2json.com/v1/api.json?rss_url=https://qiita.com/ichijouji/feed";
+//const QIITA_URL='https://qiita.com/api/v2/items?page=1&per_page=100&query=user:ichijouji';
+const ZENN_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://zenn.dev/matsumo162/feed";
+
 
 export const QiitaBlogs = () => {
   const [articles, setArticles] = useState<QiitaFeedItem[]>([]);
@@ -248,15 +250,15 @@ function Sentence(){
 }
 
 const elements = [
-	{ title: "Spectroscopic estimation of the photon number for superconducting Kerr parametric oscillators", year: 2023,link:"https://iopscience.iop.org/article/10.35848/1347-4065/acc3a8/meta"},
-	{ title: "Calculation of Gibbs partition function with imaginary time evolution on near-term quantum computers", year: 2022, link: "https://iopscience.iop.org/article/10.35848/1347-4065/ac5152/meta"},
+	{ title: "Spectroscopic estimation of the photon number for superconducting Kerr parametric oscillators", date: 2023,link:"https://iopscience.iop.org/article/10.35848/1347-4065/acc3a8/meta"},
+	{ title: "Calculation of Gibbs partition function with imaginary time evolution on near-term quantum computers", date: 2022, link: "https://iopscience.iop.org/article/10.35848/1347-4065/ac5152/meta"},
 ];
 
 function Publication(){
 	const rows = elements.map((element) => (
     <Table.Tr key={element.title}>
 			<Table.Td><a href={element.link}>{element.title}</a></Table.Td>
-      <Table.Td>{element.year}</Table.Td>
+      <Table.Td>{element.date}</Table.Td>
     </Table.Tr>
   ));
 	return (
@@ -266,7 +268,7 @@ function Publication(){
       <Table.Thead>
         <Table.Tr>
           <Table.Th>Title</Table.Th>
-          <Table.Th>Year</Table.Th>
+          <Table.Th>Date</Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>
@@ -277,9 +279,9 @@ function Publication(){
 
 
   const pres_eng_elements = [
-    { title: "Beyond Guidelines - Designing and Implementing Robust Build Pipelines", conference: "Open Source Summit Japan 2023@Ariake, Tokyo, Japan", year: 2023,link:"https://youtu.be/aLk83mxz8OM"},
-    { title: "Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators", year: 2023, conference: "APS March Meeting 2023@Las Vegas", link: "https://ui.adsabs.harvard.edu/abs/2023APS..MARB73012M/abstract"},
-    { title: "Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators", year: 2023, conference: "SSDM(Solid State Devices and Materials)2023@Makuhari", link: "https://ssdm.jp/2023/committees.html"},
+    { title: "Beyond Guidelines - Designing and Implementing Robust Build Pipelines", conference: "Open Source Summit Japan 2023@Ariake, Tokyo, Japan", date: 2023,link:"https://youtu.be/aLk83mxz8OM"},
+    { title: "Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators", date: 2023, conference: "APS March Meeting 2023@Las Vegas", link: "https://ui.adsabs.harvard.edu/abs/2023APS..MARB73012M/abstract"},
+    { title: "Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators", date: 2023, conference: "SSDM(Solid State Devices and Materials)2023@Makuhari", link: "https://ssdm.jp/2023/committees.html"},
   ];
   
   function Talks_English(){
@@ -287,7 +289,7 @@ function Publication(){
       <Table.Tr key={element.title}>
         <Table.Td><a href={element.link}>{element.title}</a></Table.Td>
         <Table.Td>{element.conference}</Table.Td>
-        <Table.Td>{element.year}</Table.Td>
+        <Table.Td>{element.date}</Table.Td>
       </Table.Tr>
     ));
     return (
@@ -298,7 +300,7 @@ function Publication(){
           <Table.Tr>
             <Table.Th>Title</Table.Th>
             <Table.Th>Conference</Table.Th>
-            <Table.Th>Year</Table.Th>
+            <Table.Th>Date</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
@@ -308,11 +310,11 @@ function Publication(){
     }
 
     const pres_jap_elements = [
-      { title: "SLSAワークショップ アシスタント", conference: "SLSAワークショップ By OpenSSF@国際文化会館", year: 2024, link:"https://www.linuxfoundation.jp/events/2024/10/join-us-at-the-slsa-workshop-on-november-1/"},
-      { title: "OSSの依存関係に注目した脆弱性評価・対策への適用提案", conference: "ネットワーク科学研究会@同志社大学（今出川キャンパス）", year: 2023, link: "https://www.network-science-seminar.com/activities/2023/poster"},
-      { title: "NISQ デバイスを用いた分配関数の計算",conference: "第 4 回量子ソフトウェア研究会@オンライン", year: 2021},
-      { title: "NISQ デバイスを用いた分配関数の計算 II@オンライン", conference: "日本物理学会 2021 年秋季大会@オンライン", year: 2021,},
-      { title: "NISQ デバイスを用いた分配関数の計算@オンライン", conference: "日本物理学会 第 76 回年次大会 (2021 年)@オンライン", year: 2021,},
+      { title: "SLSAワークショップ アシスタント", conference: "SLSAワークショップ By OpenSSF@国際文化会館", date: 2024, link:"https://www.linuxfoundation.jp/events/2024/10/join-us-at-the-slsa-workshop-on-november-1/"},
+      { title: "OSSの依存関係に注目した脆弱性評価・対策への適用提案", conference: "ネットワーク科学研究会@同志社大学（今出川キャンパス）", date: 2023, link: "https://www.network-science-seminar.com/activities/2023/poster"},
+      { title: "NISQ デバイスを用いた分配関数の計算",conference: "第 4 回量子ソフトウェア研究会@オンライン", date: 2021},
+      { title: "NISQ デバイスを用いた分配関数の計算 II@オンライン", conference: "日本物理学会 2021 年秋季大会@オンライン", date: 2021,},
+      { title: "NISQ デバイスを用いた分配関数の計算@オンライン", conference: "日本物理学会 第 76 回年次大会 (2021 年)@オンライン", date: 2021,},
     ];
     
     function Talks_Japanese(){
@@ -320,7 +322,7 @@ function Publication(){
         <Table.Tr key={element.title}>
           <Table.Td><a href={element.link}>{element.title}</a></Table.Td>
           <Table.Td>{element.conference}</Table.Td>
-          <Table.Td>{element.year}</Table.Td>
+          <Table.Td>{element.date}</Table.Td>
         </Table.Tr>
       ));
       return (
@@ -331,7 +333,7 @@ function Publication(){
             <Table.Tr>
               <Table.Th>Title</Table.Th>
               <Table.Th>Conference</Table.Th>
-              <Table.Th>Year</Table.Th>
+              <Table.Th>Date</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>
@@ -384,13 +386,72 @@ function Career() {
         <Text c="dimmed" size="sm">
           2023.04.01~now
         </Text>
+
+        {/* 1th Apil 2023 ~  */}
+        <Text td="underline" fw={700}>Developing Secure Pipeline For Financial Sector</Text>
+        <Text c="dimmed" size="sm" fw={700}>
+        Programing Languages: shell <br/>
+        Infrastructure : Linux(RedHat) or Windows, Docker<br/>
+        Tools : Jenkins, Syft, Grype, 
+        </Text>
+        <Text size="md">
+        coming soon
+        </Text>
+
+        {/* 1th Apil 2023 ~  */}
+        <Text td="underline" fw={700}>Evaluation of SBOM/Software Components Management Tools</Text>
+        <Text size="md">
+        coming soon
+        </Text>
+        
+        {/* 1th Apil 2023 ~  */}
+        <Text td="underline" fw={700}>Developing DevSecOps CICD Pipeline For Financial Sector</Text>
+        <Text c="dimmed" size="sm" fw={700}>
+        Programing Languages: Golang, Python, shell<br/>
+        Infrastructure : Linux(Ubuntu), Docker, GitLab <br/>
+        Tools : Jenkins, Syft, Grype
+        </Text>
+        <Text size="md">
+        coming soon
+        </Text>
+
+        {/* 1th Apil 2023 ~  */}
+        <Text td="underline" fw={700}>Evaluation of SBOM Generate / Vulnrabilities Detection Tools</Text>
+        <Text c="dimmed" size="sm" fw={700}>
+        Programing Languages: shell, CUE <br/>
+        Infrastructure : Linux(Ubuntu)<br/>
+        Tools : Syft, Grype
+        </Text>
+        <Text size="md">
+        coming soon
+        </Text>
+
+        {/* 1th Apil 2023 ~  */}
+        <Text td="underline" fw={700}>Developing Secure CICD/Build Pipeline</Text>
+        <Text c="dimmed" size="sm" fw={700}>
+        Programing Languages: shell, Python<br/>
+        Infrastructure : Linux(Ubuntu), Kubernetes, GitLab <br/>
+        Tools : Tekton, Sigstore, Syft, Grype, Docker
+        </Text>
+        <Text size="md">
+        coming soon
+        </Text>
+
       </Timeline.Item>
       <Timeline.Item title="National Institute of Advanced Industrial Science and Technology (AIST)">
         <Text c="dimmed" size="sm">
-         Quantum Computing Researcher @Matsuzaki Team of Kawabata
+         Quantum Computing Researcher @Matsuzaki Team
         </Text>
         <Text c="dimmed" size="sm">
           2021.04.01~2023.03.31
+        </Text>
+      </Timeline.Item>
+      <Timeline.Item title="Japan Atomic Energy Agency (JAEA)">
+        <Text c="dimmed" size="sm">
+        Intern @Kashiwa, Menter : Yuki Nagai
+        </Text>
+        <Text c="dimmed" size="sm">
+          2022.07~2022.08
         </Text>
       </Timeline.Item>
       <Timeline.Item title="Tokyo University of Science">

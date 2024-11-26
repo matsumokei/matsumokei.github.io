@@ -5,4 +5,12 @@ const nextConfig = {
   output: "export",
 };
 
+// next.config.js
+// module.exports = {
+//   i18n: {
+//     locales: ['en', 'ja'],
+//     defaultLocale: 'en',
+//   },
+// };
+
 export default nextConfig;

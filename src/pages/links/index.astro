@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('links');
+---
+
+<Layout title="Links — Keisuke's Notes" description="考えたこと・気になったことのリンク集">
+  <article class="post">
+    <h1>Links</h1>
+    <p class="post-meta">日々の業務で疑問に思ったこと、調べたいこと、参考になった資料のリンク集。</p>
+    <ul class="post-list">
+      {entries.map((entry) => (
+        <li>
+          <a href={`/links/${entry.id}/`}>{entry.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </article>
+</Layout>

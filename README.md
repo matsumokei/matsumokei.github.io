@@ -1,177 +1,44 @@
-# Next.js Markdown Blog
+# Astro Starter Kit: Minimal
 
-Next.jsとMarkdownで構築された、モダンなブログシステムです。
-エンタープライズレベルのアーキテクチャを採用し、スケーラブルで保守性の高い構造になっています。
-
-## ✨ 機能
-
-- 📝 Markdownで記事を書ける
-- 🏷️ タグ機能
-- 🎨 Tailwind CSSでスタイリング
-- ⚡ Next.js App Routerによる高速なビルド
-- 🌙 ダークモード対応（手動切り替え可能）
-- 📖 読了時間の表示
-- 🔍 SEOフレンドリー（OGP、Twitter Card対応）
-- 📱 完全レスポンシブデザイン
-- 🎯 アクセシビリティ対応
-- ⚙️ 数式表示（KaTeX）
-- 💻 シンタックスハイライト
-- 🔗 ソーシャルメディアリンク
-- 📑 目次機能（Zenn風）
-
-## 🏗️ アーキテクチャ
-
-エンタープライズレベルのディレクトリ構造を採用：
-
+```sh
+npm create astro@latest -- --template minimal
 ```
-nextjs-blog/
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
 ├── src/
-│   ├── app/              # Next.js App Router
-│   │   ├── blog/        # ブログページ
-│   │   ├── tags/        # タグページ
-│   │   ├── layout.tsx   # ルートレイアウト
-│   │   └── page.tsx     # トップページ
-│   ├── components/      # UIコンポーネント
-│   │   ├── base/       # 基本コンポーネント（Atoms）
-│   │   ├── global/     # グローバルコンポーネント
-│   │   └── molecules/  # 複合コンポーネント
-│   ├── content/        # マークダウンコンテンツ
-│   │   └── blog/      # ブログ記事
-│   ├── features/       # 機能モジュール
-│   │   ├── blog/      # ブログ機能
-│   │   └── tags/      # タグ機能
-│   ├── lib/           # ユーティリティ・ヘルパー
-│   │   ├── hooks/    # カスタムフック
-│   │   └── utils/    # ユーティリティ関数
-│   ├── config/        # 設定ファイル
-│   └── types/         # 型定義
-├── public/            # 静的ファイル
-└── content/          # Markdownコンテンツ
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-詳細は [src/README.md](src/README.md) を参照してください。
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## セットアップ
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-### インストール
+Any static assets, like images, can be placed in the `public/` directory.
 
-```bash
-pnpm install
-```
+## 🧞 Commands
 
-### 環境変数の設定
+All commands are run from the root of the project, from a terminal:
 
-`.env.example` をコピーして `.env.local` を作成し、必要な環境変数を設定します：
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-```bash
-cp .env.example .env.local
-```
+## 👀 Want to learn more?
 
-```env
-NEXT_PUBLIC_SITE_URL=https://yourdomain.com
-```
-
-### 開発サーバーの起動
-
-```bash
-pnpm dev
-```
-
-ブラウザで [http://localhost:3000](http://localhost:3000) を開きます。
-
-### ビルド
-
-```bash
-pnpm build
-```
-
-### 本番環境での起動
-
-```bash
-pnpm start
-```
-
-## ブログ記事の追加
-
-`content/blog/` ディレクトリに新しいMarkdownファイルを作成します。
-
-### フロントマター形式
-
-```markdown
----
-title: "記事のタイトル"
-date: "2026-01-19"
-description: "記事の説明"
-tags: ["タグ1", "タグ2"]
----
-
-ここに記事の本文を書きます...
-```
-
-### サポートしているフィールド
-
-- `title`: 記事のタイトル（必須）
-- `date`: 公開日（必須、ISO 8601形式）
-- `description`: 記事の説明（任意）
-- `tags`: タグの配列（任意）
-- `draft`: 下書きフラグ（trueの場合、記事は公開されません）
-
-## ディレクトリ構造
-
-```
-nextjs-blog/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── blog/              # ブログページ
-│   │   ├── tags/              # タグページ
-│   │   ├── layout.tsx         # ルートレイアウト
-│   │   ├── page.tsx           # トップページ
-│   │   └── globals.css        # グローバルスタイル
-│   ├── components/            # UIコンポーネント
-│   │   ├── base/             # 基本コンポーネント
-│   │   ├── global/           # グローバルコンポーネント（Header, Footer）
-│   │   └── molecules/        # 複合コンポーネント
-│   ├── content/              # マークダウンコンテンツ
-│   │   └── blog/            # ブログ記事
-│   ├── features/             # 機能モジュール
-│   │   ├── blog/            # ブログ機能
-│   │   └── tags/            # タグ機能
-│   ├── lib/                  # ユーティリティ
-│   │   ├── hooks/           # カスタムフック
-│   │   └── utils/           # ユーティリティ関数
-│   ├── config/               # 設定ファイル
-│   │   ├── site.ts          # サイト設定
-│   │   └── paths.ts         # パス定義
-│   └── types/                # 型定義
-│       └── index.ts         # 共通型
-├── public/                   # 静的ファイル
-└── content/                  # マークダウンコンテンツ（旧）
-```
-
-詳細は [src/README.md](src/README.md) を参照してください。
-
-## 技術スタック
-
-- **Next.js 16**: Reactフレームワーク
-- **TypeScript**: 型安全性
-- **Tailwind CSS**: CSSフレームワーク
-- **pnpm**: パッケージマネージャー
-- **gray-matter**: Markdownフロントマターパーサー
-- **next-mdx-remote**: MDX/Markdownレンダリング
-- **rehype-highlight**: コードハイライト
-- **date-fns**: 日付フォーマット
-- **reading-time**: 読了時間計算
-
-## カスタマイズ
-
-### サイト名の変更
-
-`app/layout.tsx` のメタデータと `components/Header.tsx` のサイト名を編集してください。
-
-### スタイルの変更
-
-Tailwind CSSを使用しているため、コンポーネント内のクラス名を編集することでスタイルを変更できます。
-
-## ライセンス
-
-MIT
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# memo

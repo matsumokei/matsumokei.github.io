@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  headings?: Heading[];
+}
+
+const { title, description = "エンジニアリングと日々の記録。", headings = [] } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const toc = headings.filter((h) => h.depth <= 3);
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-title">
+        <h1><a href="/">Keisuke's Notes</a></h1>
+        <nav class="site-nav">
+          <a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Blog</a>
+          <a href="/about/" aria-current={pathname === '/about/' ? 'page' : undefined}>About</a>
+          <a href="/cv/" aria-current={pathname === '/cv/' ? 'page' : undefined}>CV</a>
+          <a href="/links/" aria-current={pathname.startsWith('/links/') ? 'page' : undefined}>Links</a>
+        </nav>
+      </header>
+
+      <div class="layout-grid">
+        <aside class="sidebar">
+          {toc.length > 0 && (
+            <>
+              <h2>目次</h2>
+              <ul class="toc">
+                {toc.map((h) => (
+                  <li class={`toc-depth-${h.depth}`}>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <h2>About Me</h2>
+          <p>
+            ソフトウェアエンジニアです。仕事で考えたこと、作ったもの、読んだものについて書いています。
+            意見はすべて個人のものです。
+          </p>
+          <p><a href="/about/">もう少し詳しく →</a></p>
+
+          <h2>Links</h2>
+          <p>
+            <a href="/rss.xml">RSS Feed</a><br />
+            <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          </p>
+        </aside>
+
+        <main class="main-col">
+          <slot />
+        </main>
+      </div>
+
+      <footer class="site-footer">
+        <p>&copy; {new Date().getFullYear()} Keisuke Matsumoto. Built with Astro.</p>
+      </footer>
+    </div>
+  </body>
+</html>

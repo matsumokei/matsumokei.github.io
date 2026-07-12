@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('links');
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} — Keisuke's Notes`} description={entry.data.description} headings={headings}>
+  <article class="post">
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="post-meta">{entry.data.description}</p>}
+    <Content />
+  </article>
+</Layout>

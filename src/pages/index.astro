@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const byYear = posts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  (acc[year] ??= []).push(post);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Keisuke's Notes">
+  {years.map((year) => (
+    <>
+      <p class="year-marker">{year}</p>
+      <ul class="post-list">
+        {byYear[year].map((post) => (
+          <li>
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+            </time>
+            &nbsp;&nbsp;
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>
+  ))}
+</Layout>

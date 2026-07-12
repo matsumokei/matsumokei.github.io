@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const HITACHI_ERA_DETAIL_URL = '/blog/from-physics-to-hitachi/';
+
+const hitachiProjects = [
+  {
+    title: 'Developing Secure Pipeline For Financial Sector',
+    period: '2023.04 - Present',
+    tech: 'shell, Linux(RedHat/Windows), Docker, Jenkins, Syft, Grype',
+  },
+  {
+    title: 'Evaluation of SBOM/Software Components Management Tools',
+    period: '2023.04 - Present',
+  },
+  {
+    title: 'Developing DevSecOps CI/CD Pipeline For Financial Sector',
+    period: '2023.04 - Present',
+    tech: 'Golang, Python, shell, Linux(Ubuntu), Docker, GitLab, Jenkins, Syft, Grype',
+  },
+  {
+    title: 'Evaluation of SBOM Generate / Vulnerabilities Detection Tools',
+    period: '2023.04 - Present',
+    tech: 'shell, CUE, Linux(Ubuntu), Syft, Grype',
+  },
+  {
+    title: 'Developing Secure CI/CD / Build Pipeline',
+    period: '2023.04 - Present',
+    tech: 'shell, Python, Linux(Ubuntu), Kubernetes, GitLab, Tekton, Sigstore, Syft, Grype, Docker',
+  },
+];
+
+const careerItems = [
+  {
+    date: '2023-04',
+    title: 'Researcher at Hitachi, Ltd. R&D',
+    description: 'Yokohama Totsuka. Working on Software Supply Chain Security, DevSecOps, and Secure CI/CD Pipeline development.',
+    detailUrl: HITACHI_ERA_DETAIL_URL,
+    projects: hitachiProjects,
+  },
+  {
+    date: '2021-04',
+    title: 'Quantum Computing Researcher at AIST',
+    description: 'Matsuzaki Team. National Institute of Advanced Industrial Science and Technology.',
+  },
+  {
+    date: '2022-07',
+    title: 'Intern at Japan Atomic Energy Agency (JAEA)',
+    description: 'Kashiwa. Mentor: Yuki Nagai.',
+  },
+  {
+    date: '2021-04',
+    title: 'Master degree Physics at Tokyo University of Science',
+    description: 'Nikuni laboratory.',
+  },
+  {
+    date: '2017-04',
+    title: 'Bachelor degree Physics at Tokyo University of Science',
+    description: 'Physics department.',
+  },
+];
+
+const publications = [
+  {
+    title: 'Theoretical analysis of photonic resonances in spectroscopic measurements of a Kerr nonlinear resonator',
+    year: 2026,
+    url: 'https://iopscience.iop.org/article/10.35848/1347-4065/ae6497/meta',
+  },
+  {
+    title: 'Spectroscopic estimation of the photon number for superconducting Kerr parametric oscillators',
+    year: 2023,
+    url: 'https://iopscience.iop.org/article/10.35848/1347-4065/acc3a8/meta',
+  },
+  {
+    title: 'Calculation of Gibbs partition function with imaginary time evolution on near-term quantum computers',
+    year: 2022,
+    url: 'https://iopscience.iop.org/article/10.35848/1347-4065/ac5152/meta',
+  },
+];
+
+const presentationsEn = [
+  {
+    title: 'Beyond Guidelines - Designing and Implementing Robust Build Pipelines',
+    conference: 'Open Source Summit Japan 2023',
+    location: 'Ariake, Tokyo, Japan',
+    year: 2023,
+    url: 'https://youtu.be/aLk83mxz8OM',
+  },
+  {
+    title: 'Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators',
+    conference: 'APS March Meeting 2023',
+    location: 'Las Vegas',
+    year: 2023,
+    url: 'https://ui.adsabs.harvard.edu/abs/2023APS..MARB73012M/abstract',
+  },
+  {
+    title: 'Spectroscopic method for measuring the number of photons in superconducting Kerr parametric oscillators',
+    conference: 'SSDM (Solid State Devices and Materials) 2023',
+    location: 'Makuhari',
+    year: 2023,
+    url: 'https://ssdm.jp/2023/committees.html',
+  },
+];
+
+const presentationsJa = [
+  {
+    title: 'SLSAワークショップ アシスタント',
+    conference: 'SLSAワークショップ By OpenSSF',
+    location: '国際文化会館',
+    year: 2024,
+    url: 'https://www.linuxfoundation.jp/events/2024/10/join-us-at-the-slsa-workshop-on-november-1/',
+  },
+  {
+    title: 'OSSの依存関係に注目した脆弱性評価・対策への適用提案',
+    conference: 'ネットワーク科学研究会',
+    location: '同志社大学（今出川キャンパス）',
+    year: 2023,
+    url: 'https://www.network-science-seminar.com/activities/2023/poster',
+  },
+  {
+    title: 'NISQデバイスを用いた分配関数の計算',
+    conference: '第4回量子ソフトウェア研究会',
+    location: 'オンライン',
+    year: 2021,
+  },
+  {
+    title: 'NISQデバイスを用いた分配関数の計算 II',
+    conference: '日本物理学会 2021年秋季大会',
+    location: 'オンライン',
+    year: 2021,
+  },
+  {
+    title: 'NISQデバイスを用いた分配関数の計算',
+    conference: '日本物理学会 第76回年次大会 (2021年)',
+    location: 'オンライン',
+    year: 2021,
+  },
+];
+---
+
+<Layout title="CV — Keisuke's Notes" description="Curriculum Vitae of Keisuke Matsumoto">
+  <article class="post cv">
+    <h1>Curriculum Vitae</h1>
+    <p class="post-meta">Keisuke Matsumoto — Software Developer and Researcher</p>
+
+    <h2>Career</h2>
+    <ul class="cv-list">
+      {careerItems.map((item) => (
+        <li>
+          <span class="cv-date">{item.date}</span>
+          <strong>{item.title}</strong>
+          <p>{item.description}</p>
+          {item.projects && (
+            <>
+              <p class="cv-subheading">Projects</p>
+              <ul class="cv-sublist">
+                {item.projects.map((project) => (
+                  <li>
+                    <strong>{project.title}</strong>
+                    <p class="cv-meta">{project.period}</p>
+                    {project.tech && <p class="cv-meta">{project.tech}</p>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {item.detailUrl && <p class="cv-meta"><a href={item.detailUrl}>details →</a></p>}
+        </li>
+      ))}
+    </ul>
+
+    <h2>Publications</h2>
+    <ul class="cv-list">
+      {publications.map((pub) => (
+        <li>
+          <a href={pub.url} target="_blank" rel="noopener noreferrer">{pub.title}</a>
+          <p class="cv-meta">{pub.year}</p>
+        </li>
+      ))}
+    </ul>
+
+    <h2>Presentations (English)</h2>
+    <ul class="cv-list">
+      {presentationsEn.map((pres) => (
+        <li>
+          {pres.url
+            ? <a href={pres.url} target="_blank" rel="noopener noreferrer">{pres.title}</a>
+            : <strong>{pres.title}</strong>}
+          <p class="cv-meta">{pres.conference} @{pres.location} ({pres.year})</p>
+        </li>
+      ))}
+    </ul>
+
+    <h2>Presentations (Japanese)</h2>
+    <ul class="cv-list">
+      {presentationsJa.map((pres) => (
+        <li>
+          {pres.url
+            ? <a href={pres.url} target="_blank" rel="noopener noreferrer">{pres.title}</a>
+            : <strong>{pres.title}</strong>}
+          <p class="cv-meta">{pres.conference} @{pres.location} ({pres.year})</p>
+        </li>
+      ))}
+    </ul>
+  </article>
+</Layout>

@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { getCategory } from '../../utils/category';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const byCategory = posts.reduce((acc, post) => {
+  const category = getCategory(post.id) ?? '未分類';
+  (acc[category] ??= []).push(post);
+  return acc;
+}, /** @type {Record<string, typeof posts>} */ ({}));
+
+const categories = Object.keys(byCategory).sort((a, b) => byCategory[b].length - byCategory[a].length);
+---
+
+<Layout title="Note — Keisuke's Notes" description="カテゴリ別に整理した記事一覧。">
+  {categories.map((category) => (
+    <>
+      <p class="year-marker">{category}</p>
+      <ul class="post-list">
+        {byCategory[category].map((post) => (
+          <li>
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+            </time>
+            &nbsp;&nbsp;
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>
+  ))}
+</Layout>

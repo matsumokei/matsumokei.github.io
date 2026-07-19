@@ -5,7 +5,6 @@
   --rule: #eaeaea;
   --link: #1d4a8f;
   --link-hover: #0d0d0d;
-  --link-visited: #6a3d8f;
   --title: #1a6b3c;
   --max-width: 86rem;
   color-scheme: light;
@@ -77,10 +76,6 @@ nav.site-nav a[aria-current='page'] {
 
 a {
   color: var(--link);
-}
-
-a:visited {
-  color: var(--link-visited);
 }
 
 a:hover {
@@ -189,6 +184,48 @@ article.post h1 {
   color: var(--muted);
   font-size: 0.9rem;
   margin-bottom: 2rem;
+}
+
+.category-tag {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 1rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.category-tag:hover {
+  color: var(--link);
+  border-color: var(--link);
+}
+
+ul.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.category-list li {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.7;
+}
+
+ul.category-list .category-count {
+  color: var(--muted);
+}
+
+.category-heading {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-back {
+  margin-left: 0.75rem;
 }
 
 article.post img {
@@ -314,7 +351,6 @@ footer.site-footer {
     --rule: #2c2b30;
     --link: #7aa6e0;
     --link-hover: #f2efe8;
-    --link-visited: #b18fd6;
     --title: #6fbf8b;
     color-scheme: dark;
   }

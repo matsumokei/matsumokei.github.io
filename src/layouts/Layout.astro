@@ -34,6 +34,7 @@ const toc = headings.filter((h) => h.depth <= 3);
         <h1><a href="/">Keisuke's Notes</a></h1>
         <nav class="site-nav">
           <a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Blog</a>
+          <a href="/note/" aria-current={pathname.startsWith('/note/') || pathname.startsWith('/category/') ? 'page' : undefined}>Note</a>
           <a href="/about/" aria-current={pathname === '/about/' ? 'page' : undefined}>About</a>
           <a href="/cv/" aria-current={pathname === '/cv/' ? 'page' : undefined}>CV</a>
           <a href="/links/" aria-current={pathname.startsWith('/links/') ? 'page' : undefined}>Links</a>

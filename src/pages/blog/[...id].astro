@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
+import { getCategory } from '../../utils/category';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const category = getCategory(post.id);
 ---
 
 <Layout title={`${post.data.title} — Keisuke's Notes`} description={post.data.description} headings={headings}>
@@ -23,6 +25,9 @@ const { Content, headings } = await render(post);
       </time>
       {post.data.updatedDate && (
         <> · updated {post.data.updatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>
+      )}
+      {category && (
+        <a class="category-tag" href={`/category/${encodeURIComponent(category)}/`}>{category}</a>
       )}
     </p>
     <Content />

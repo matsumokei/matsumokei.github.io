@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { getCategory } from '../../utils/category';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+  const categories = new Set();
+  for (const post of allPosts) {
+    const category = getCategory(post.id);
+    if (category) categories.add(category);
+  }
+
+  return Array.from(categories).map((category) => ({
+    params: { category },
+    props: {
+      posts: allPosts.filter((post) => getCategory(post.id) === category),
+    },
+  }));
+}
+
+const { category } = Astro.params;
+const { posts: categoryPosts } = Astro.props;
+const posts = categoryPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const byYear = posts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  (acc[year] ??= []).push(post);
+  return acc;
+}, /** @type {Record<number, typeof posts>} */ ({}));
+
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title={`${category} — Keisuke's Notes`}>
+  <p class="category-heading">
+    カテゴリ: {category} <a class="category-back" href="/note/">← カテゴリ一覧</a>
+  </p>
+  {years.map((year) => (
+    <>
+      <p class="year-marker">{year}</p>
+      <ul class="post-list">
+        {byYear[year].map((post) => (
+          <li>
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+            </time>
+            &nbsp;&nbsp;
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>
+  ))}
+</Layout>

@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions CIコスト分析と最適化メモ"
-description: "GitHub Actionsの料金の決まり方、project-sw-monorepoの課金分析、CI並列化・キャッシュ改善の実測記録。"
+description: "GitHub Actionsの料金の決まり方、hoge-monorepoの課金分析、CI並列化・キャッシュ改善の実測記録。"
 pubDate: 2026-07-10
 ---
 
@@ -26,11 +26,11 @@ GitHub Actionsの料金は次の以下の要素で決まる：
 # Appendix: GitHub Actions 利用料金分析 (2026-07-01〜07-08)
 
 元データ: `.github/usageReport_1_4db8c330d9bc4a37a352eaceede8460d.csv`
-Organization: `lvgs-spotwork`(GitHub Enterprise Cloud, 576/630 seats)
+Organization: `hoge-org`(GitHub Enterprise Cloud, 576/630 seats)
 
 ## CSVの各カラムの意味
 
-以下、07-08の実データ1行(`lambda-ci.yml`, keisuke-matsumoto-lvgs)を例に各カラムを説明する。
+以下、07-08の実データ1行(`lambda-ci.yml`, keisuke-matsumoto-hoge)を例に各カラムを説明する。
 
 - `date`: 使用日(日次集計)
   - 例: `2026-07-08`
@@ -51,13 +51,13 @@ Organization: `lvgs-spotwork`(GitHub Enterprise Cloud, 576/630 seats)
 - `net_amount`: 実際に課金される金額 = `gross_amount − discount_amount`
   - 例: `1.125`
 - `username`: ジョブをトリガーしたユーザー(botアカウントも含む)
-  - 例: `keisuke-matsumoto-lvgs`
+  - 例: `keisuke-matsumoto-hoge`
 - `organization` / `repository`: Organization名 / リポジトリ名
-  - 例: `lvgs-spotwork` / `project-sw-monorepo`
+  - 例: `hoge-org` / `hoge-monorepo`
 - `workflow_path`: 実行されたワークフローファイルのパス(storage課金は空)
   - 例: `.github/workflows/lambda-ci.yml`
 - `cost_center_name`: 社内コストセンターラベル
-  - 例: `レバウェル-新規事業-cost`
+  - 例: `hoge-新規事業-cost`
 
 ## 全体サマリー
 
@@ -80,9 +80,9 @@ Organization: `lvgs-spotwork`(GitHub Enterprise Cloud, 576/630 seats)
 
 **07-02までは無料枠が使用量を全部相殺(net=\$0)。07-03から無料枠が枯渇し、以降はほぼ全額が実課金になっている。**
 
-無料枠(月50,000分、GitHub Enterprise Cloudの記載値)は `lvgs-spotwork` Enterprise全体で共有されているため、この枯渇は project-sw-monorepo 単体の消費だけが原因ではなく、Enterprise全体の消費が積み上がった結果と考えられる。
+無料枠(月50,000分、GitHub Enterprise Cloudの記載値)は `hoge-org` Enterprise全体で共有されているため、この枯渇は hoge-monorepo 単体の消費だけが原因ではなく、Enterprise全体の消費が積み上がった結果と考えられる。
 
-## ワークフロー別 実質課金額 (project-sw-monorepo, 上位)
+## ワークフロー別 実質課金額 (hoge-monorepo, 上位)
 
 | ワークフロー | gross | net(実質課金) | 割合(net) |
 |---|---|---|---|
@@ -128,7 +128,7 @@ Organization: `lvgs-spotwork`(GitHub Enterprise Cloud, 576/630 seats)
 | repo | GB時間 | 実質課金 |
 |---|---|---|
 | labor-compliance-core | 2045.6 | \$0.00 |
-| project-sw-monorepo | 214.0 | \$0.00 |
+| hoge-monorepo | 214.0 | \$0.00 |
 
 無料枠(Enterprise Cloudは50GB)の範囲内で、現時点では課金なし。
 
